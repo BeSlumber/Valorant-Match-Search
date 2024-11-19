@@ -6,13 +6,45 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:Valorant_Match_search"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="850" Width="1200">
     <Grid>
         <Grid.RowDefinitions>
-            
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Vertical" >
+            <!--查询搜索框-->
+            <StackPanel Orientation="Horizontal" Margin="20,10">
+                <TextBox x:Name="txtPlayerId" Style="{StaticResource TextBoxExtend}" FontSize="15px"  BorderBrush="Blue" MinWidth="300" 
+                     TextChanged="TextBox_TextChanged"
+                     VerticalAlignment="Center"/>
+
+                <Button Style="{StaticResource ButtonDanger}" Content="查询" 
+                        Click="Button_Click"
+                        Margin="10,0,0,0" 
+                        hc:BorderElement.CornerRadius="15"/>
+            </StackPanel>
+            <!--查询列表-->
+            <StackPanel x:Name="PlayerPanel"  Visibility="Hidden" HorizontalAlignment="Left">
+                <ListView Width="300" ItemsSource="{Binding PlayerList}"  Margin="20,0">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Width="80" Header="玩家" DisplayMemberBinding="{Binding ID}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+            </StackPanel>
+            <!--内容页面-->
+            <StackPanel x:Name="mainPanel" >
+                <Frame x:Name="mainFrame" NavigationUIVisibility="Hidden">
+                    
+                </Frame>
+            </StackPanel>
+        </StackPanel>
+
     </Grid>
 </Window>

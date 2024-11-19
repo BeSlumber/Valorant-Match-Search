@@ -9,6 +9,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Valorant_Match_search.Model;
+
 namespace Valorant_Match_search
 {
     /// <summary>
@@ -19,6 +21,31 @@ namespace Valorant_Match_search
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
+        }
+        public List<Player> PlayerList = new List<Player>();
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            
+            var SearchText = txtPlayerId.Text;
+
+            if (string.IsNullOrEmpty(SearchText))
+            {
+                PlayerPanel.Visibility = Visibility.Hidden;
+                return;
+            }
+            PlayerPanel.Visibility = Visibility.Visible;
+
+            //var SearchText = txtPlayerId.Text;
+            //调用API得到PlayList
+            PlayerList = new List<Player>();
+                
+        }
+        //查询按钮点击事件
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //主页面加载
+            mainFrame.Navigate(new Uri("Page1.xaml", UriKind.Relative));
         }
     }
 }
